@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
-const MediaRow = ({ item, setSelectedItem }) => (
+const MediaRow = ({ item }) => (
   <tr>
     <td>
       <img src={item.thumbnail} alt={item.title} />
@@ -11,14 +11,11 @@ const MediaRow = ({ item, setSelectedItem }) => (
     <td>{item.filesize}</td>
     <td>{item.media_type}</td>
     <td>
-      <button onClick={() => setSelectedItem(item)}>View</button>
+      <Link to="/single" state={{ item }}>
+        View
+      </Link>
     </td>
   </tr>
 );
-
-MediaRow.propTypes = {
-  item: PropTypes.object.isRequired,
-  setSelectedItem: PropTypes.func.isRequired,
-};
 
 export default MediaRow;
