@@ -4,6 +4,6 @@ import babel from '@rolldown/plugin-babel';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/~bayrae/forms/',
+  base: '/~bayrae/context/',
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
 });
