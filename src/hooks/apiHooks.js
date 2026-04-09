@@ -28,11 +28,7 @@ const useMedia = () => {
   };
 
   useEffect(() => {
-    const timeoutId = window.setTimeout(() => {
-      void getMedia();
-    }, 0);
-
-    return () => window.clearTimeout(timeoutId);
+    void getMedia();
   }, []);
 
   return { mediaArray };
