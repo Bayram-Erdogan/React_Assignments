@@ -16,4 +16,12 @@ Note: This will impact Vite dev & build performances.
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-Open [http://users.metropolia.fi/~bayramerdogan/forms](http://users.metropolia.fi/~bayramerdogan/forms) to view it in the browser.
+
+## Assignment Deployments
+
+- Open [First Components branch](https://github.com/Bayram-Erdogan/React_Assignments/tree/first-component) for the first-components assignment.
+- Open [State Management branch](https://github.com/Bayram-Erdogan/React_Assignments/tree/state-management) for the state-management assignment.
+- Open [Routing assignment deployment](https://users.metropolia.fi/~bayrae/wsk-routing/) to view it in the browser.
+- Open [Hooks assignment deployment](https://users.metropolia.fi/~bayrae/hooks) to view it in the browser.
+- Open [Custom Hooks assignment deployment](https://users.metropolia.fi/~bayrae/custom-hooks) to view it in the browser.
+- Open [Forms assignment deployment](https://users.metropolia.fi/~bayrae/forms) to view it in the browser.
