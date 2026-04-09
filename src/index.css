@@ -52,6 +52,7 @@
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 #root {
@@ -64,6 +65,61 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+}
+
+main {
+  padding: 24px;
+}
+
+nav {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--text-h);
+  text-decoration: none;
+}
+
+.table-shell {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+th,
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+th {
+  white-space: nowrap;
+}
+
+td img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 h1,

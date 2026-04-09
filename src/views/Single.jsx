@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router';
 
 const Single = () => {
   const { state } = useLocation();
-  const item = state.item; // Home'dan Link ile gelen item
+  const item = state?.item;
   const navigate = useNavigate();
 
   if (!item) return <p>No item selected</p>;
@@ -10,6 +10,7 @@ const Single = () => {
   return (
     <div>
       <h2>{item.title}</h2>
+      <p>Owner: {item.username}</p>
       <p>{item.description}</p>
 
       {item.media_type.includes('image') ? (
