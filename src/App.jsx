@@ -9,7 +9,7 @@ import Logout from './views/Logout';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/~bayrae/forms">
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
