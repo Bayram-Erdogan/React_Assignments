@@ -1,0 +1,22 @@
+[
+  {
+    "media_id": 1,
+    "thumbnail": "/icons.svg",
+    "title": "Sample Media 1",
+    "description": "Local JSON example item",
+    "created_at": "2026-04-09T10:00:00.000Z",
+    "filesize": "128 KB",
+    "media_type": "image/svg+xml",
+    "filename": "/icons.svg"
+  },
+  {
+    "media_id": 2,
+    "thumbnail": "/favicon.svg",
+    "title": "Sample Media 2",
+    "description": "Another local JSON example item",
+    "created_at": "2026-04-09T11:00:00.000Z",
+    "filesize": "64 KB",
+    "media_type": "image/svg+xml",
+    "filename": "/favicon.svg"
+  }
+]
