@@ -7,7 +7,7 @@ import Single from './views/Single';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/~bayrae/custom-hooks">
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
