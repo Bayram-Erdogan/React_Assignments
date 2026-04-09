@@ -28,7 +28,11 @@ const useMedia = () => {
   };
 
   useEffect(() => {
-    void getMedia();
+    const timeoutId = window.setTimeout(() => {
+      void getMedia();
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
   }, []);
 
   const postMedia = async (file, inputs, token) => {
