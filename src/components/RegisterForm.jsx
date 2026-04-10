@@ -27,10 +27,16 @@ const RegisterForm = () => {
   return (
     <>
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="registeruser">Username</label>
+      <form
+        className="mx-auto flex max-w-md flex-col gap-4 text-left"
+        onSubmit={handleSubmit}
+      >
+        <div className="flex flex-col gap-2">
+          <label className="font-medium text-(--text-h)" htmlFor="registeruser">
+            Username
+          </label>
           <input
+            className="rounded-lg border border-(--border) bg-white px-4 py-3 text-inherit outline-none transition focus:border-(--accent-border) focus:ring-2 focus:ring-(--accent-bg)"
             name="username"
             type="text"
             id="registeruser"
@@ -39,9 +45,15 @@ const RegisterForm = () => {
             value={inputs.username}
           />
         </div>
-        <div>
-          <label htmlFor="registeremail">Email</label>
+        <div className="flex flex-col gap-2">
+          <label
+            className="font-medium text-(--text-h)"
+            htmlFor="registeremail"
+          >
+            Email
+          </label>
           <input
+            className="rounded-lg border border-(--border) bg-white px-4 py-3 text-inherit outline-none transition focus:border-(--accent-border) focus:ring-2 focus:ring-(--accent-bg)"
             name="email"
             type="email"
             id="registeremail"
@@ -50,9 +62,15 @@ const RegisterForm = () => {
             value={inputs.email}
           />
         </div>
-        <div>
-          <label htmlFor="registerpassword">Password</label>
+        <div className="flex flex-col gap-2">
+          <label
+            className="font-medium text-(--text-h)"
+            htmlFor="registerpassword"
+          >
+            Password
+          </label>
           <input
+            className="rounded-lg border border-(--border) bg-white px-4 py-3 text-inherit outline-none transition focus:border-(--accent-border) focus:ring-2 focus:ring-(--accent-bg)"
             name="password"
             type="password"
             id="registerpassword"
@@ -61,7 +79,12 @@ const RegisterForm = () => {
             value={inputs.password}
           />
         </div>
-        <button type="submit">Register</button>
+        <button
+          className="inline-flex items-center justify-center rounded-lg bg-(--accent) px-4 py-3 font-medium text-white transition hover:opacity-90"
+          type="submit"
+        >
+          Register
+        </button>
       </form>
     </>
   );

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import MediaRow from '../components/MediaRow';
 import fetchData from '../utils/fetchData';
 
 const Home = () => {
   const [mediaArray, setMediaArray] = useState([]);
 
-  const getMedia = async () => {
+  const getMedia = useCallback(async () => {
     try {
       const mediaUrl = `${import.meta.env.VITE_MEDIA_API}/media`;
       const authUrl = import.meta.env.VITE_AUTH_API;
@@ -26,11 +26,15 @@ const Home = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    void getMedia();
-  }, []);
+    const timeoutId = window.setTimeout(() => {
+      void getMedia();
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [getMedia]);
 
   return (
     <>
@@ -53,7 +57,11 @@ const Home = () => {
 
           <tbody>
             {mediaArray.map((item) => (
-              <MediaRow key={item.media_id} item={item} />
+              <MediaRow
+                key={item.media_id}
+                item={item}
+                onMediaChanged={getMedia}
+              />
             ))}
           </tbody>
         </table>
