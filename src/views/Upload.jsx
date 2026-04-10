@@ -50,10 +50,16 @@ const Upload = () => {
   return (
     <>
       <h1>Upload</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title</label>
+      <form
+        className="mx-auto flex max-w-2xl flex-col gap-4 text-left"
+        onSubmit={handleSubmit}
+      >
+        <div className="flex flex-col gap-2">
+          <label className="font-medium text-(--text-h)" htmlFor="title">
+            Title
+          </label>
           <input
+            className="rounded-lg border border-(--border) bg-white px-4 py-3 text-inherit outline-none transition focus:border-(--accent-border) focus:ring-2 focus:ring-(--accent-bg)"
             name="title"
             type="text"
             id="title"
@@ -61,9 +67,12 @@ const Upload = () => {
             value={inputs.title}
           />
         </div>
-        <div>
-          <label htmlFor="description">Description</label>
+        <div className="flex flex-col gap-2">
+          <label className="font-medium text-(--text-h)" htmlFor="description">
+            Description
+          </label>
           <textarea
+            className="min-h-32 rounded-lg border border-(--border) bg-white px-4 py-3 text-inherit outline-none transition focus:border-(--accent-border) focus:ring-2 focus:ring-(--accent-bg)"
             name="description"
             rows={5}
             id="description"
@@ -71,9 +80,12 @@ const Upload = () => {
             value={inputs.description}
           ></textarea>
         </div>
-        <div>
-          <label htmlFor="file">File</label>
+        <div className="flex flex-col gap-2">
+          <label className="font-medium text-(--text-h)" htmlFor="file">
+            File
+          </label>
           <input
+            className="rounded-lg border border-(--border) bg-white px-4 py-3 text-inherit file:mr-4 file:rounded-md file:border-0 file:bg-(--accent-bg) file:px-3 file:py-2 file:font-medium file:text-(--text-h)"
             name="file"
             type="file"
             id="file"
@@ -82,17 +94,18 @@ const Upload = () => {
           />
         </div>
         <img
+          className="w-56 rounded-2xl border border-(--border) shadow-(--shadow)"
           src={
             file
               ? URL.createObjectURL(file)
               : 'https://placehold.co/200?text=Choose+image'
           }
           alt="preview"
-          width="200"
         />
         <button
+          className="inline-flex w-fit items-center justify-center rounded-lg bg-(--accent) px-4 py-3 font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
           type="submit"
-          disabled={file && inputs.title.length > 3 ? false : true}
+          disabled={!file || inputs.title.trim().length < 3}
         >
           Upload
         </button>

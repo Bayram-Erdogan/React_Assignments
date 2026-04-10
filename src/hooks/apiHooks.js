@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import fetchData from '../utils/fetchData';
 
 const useMedia = () => {
@@ -61,7 +61,41 @@ const useMedia = () => {
     return mediaResult;
   };
 
-  return { mediaArray, postMedia };
+  const deleteMedia = async (mediaId, token) => {
+    const fetchOptions = {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const deleteResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/media/${mediaId}`,
+      fetchOptions
+    );
+
+    return deleteResult;
+  };
+
+  const modifyMedia = async (mediaId, inputs, token) => {
+    const fetchOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(inputs),
+    };
+
+    const modifyResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/media/${mediaId}`,
+      fetchOptions
+    );
+
+    return modifyResult;
+  };
+
+  return { mediaArray, postMedia, deleteMedia, modifyMedia };
 };
 
 const useAuthentication = () => {
@@ -145,4 +179,65 @@ const useFile = () => {
   return { postFile };
 };
 
-export { useMedia, useAuthentication, useUser, useFile };
+const useLike = () => {
+  const getLikeCountByMediaId = useCallback(async (mediaId) => {
+    const likeCountResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/likes/count/${mediaId}`
+    );
+
+    return likeCountResult;
+  }, []);
+
+  const getLikeByUser = useCallback(async (mediaId, token) => {
+    const fetchOptions = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const likeResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/likes/bymedia/user/${mediaId}`,
+      fetchOptions
+    );
+
+    return likeResult;
+  }, []);
+
+  const postLike = useCallback(async (mediaId, token) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ media_id: mediaId }),
+    };
+
+    const likeResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/likes`,
+      fetchOptions
+    );
+
+    return likeResult;
+  }, []);
+
+  const deleteLike = useCallback(async (likeId, token) => {
+    const fetchOptions = {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const deleteResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/likes/${likeId}`,
+      fetchOptions
+    );
+
+    return deleteResult;
+  }, []);
+
+  return { postLike, deleteLike, getLikeCountByMediaId, getLikeByUser };
+};
+
+export { useMedia, useAuthentication, useUser, useFile, useLike };

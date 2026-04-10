@@ -11,8 +11,8 @@ const Layout = () => {
 
   return (
     <div>
-      <nav>
-        <ul>
+      <nav className="border-b border-(--border) px-6 py-4">
+        <ul className="m-0 flex flex-wrap gap-3 p-0 list-none [&>li>a]:text-(--text-h) [&>li>a]:no-underline">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -35,7 +35,7 @@ const Layout = () => {
         </ul>
       </nav>
 
-      <main>
+      <main className="p-6">
         <Outlet />
       </main>
     </div>
