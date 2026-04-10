@@ -24,13 +24,13 @@ const UserProvider = ({ children }) => {
           setUser(userResult.user);
         }
 
-        navigate('/');
+        navigate(location.state?.from?.pathname || '/');
       } catch (e) {
         console.log(e.message);
         throw e;
       }
     },
-    [postLogin, getUserByToken, navigate]
+    [postLogin, getUserByToken, location.state, navigate]
   );
 
   const handleLogout = useCallback(() => {
@@ -49,14 +49,13 @@ const UserProvider = ({ children }) => {
       if (token) {
         const userResult = await getUserByToken(token);
         setUser(userResult.user);
-        navigate(location.pathname);
       }
     } catch (e) {
       console.log(e.message);
       localStorage.removeItem('token');
       setUser(null);
     }
-  }, [getUserByToken, location.pathname, navigate]);
+  }, [getUserByToken]);
 
   return (
     <UserContext.Provider

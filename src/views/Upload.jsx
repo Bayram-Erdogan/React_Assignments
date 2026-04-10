@@ -29,6 +29,7 @@ const Upload = () => {
 
       const token = localStorage.getItem('token');
       if (!token) {
+        navigate('/login', { state: { from: { pathname: '/upload' } } });
         return;
       }
 
