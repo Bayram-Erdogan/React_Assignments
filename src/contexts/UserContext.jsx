@@ -48,7 +48,13 @@ const UserProvider = ({ children }) => {
       const token = localStorage.getItem('token');
       if (token) {
         const userResult = await getUserByToken(token);
-        setUser(userResult.user);
+        // Sadece user değiştiyse setUser çağır
+        setUser((prevUser) => {
+          if (!prevUser || prevUser.user_id !== userResult.user.user_id) {
+            return userResult.user;
+          }
+          return prevUser;
+        });
       }
     } catch (e) {
       console.log(e.message);
@@ -56,6 +62,12 @@ const UserProvider = ({ children }) => {
       setUser(null);
     }
   }, [getUserByToken]);
+
+  // Auto-login sadece ilk mount'ta çalışsın
+  useEffect(() => {
+    handleAutoLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <UserContext.Provider

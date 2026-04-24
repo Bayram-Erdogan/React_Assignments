@@ -120,7 +120,7 @@ const useAuthentication = () => {
 };
 
 const useUser = () => {
-  const getUserByToken = async (token) => {
+  const getUserByToken = useCallback(async (token) => {
     const fetchOptions = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -133,7 +133,7 @@ const useUser = () => {
     );
 
     return userResult;
-  };
+  }, []);
 
   const postUser = async (inputs) => {
     const fetchOptions = {
@@ -195,12 +195,20 @@ const useLike = () => {
       },
     };
 
-    const likeResult = await fetchData(
-      `${import.meta.env.VITE_MEDIA_API}/likes/bymedia/user/${mediaId}`,
-      fetchOptions
-    );
-
-    return likeResult;
+    try {
+      const likeResult = await fetchData(
+        `${import.meta.env.VITE_MEDIA_API}/likes/bymedia/user/${mediaId}`,
+        fetchOptions
+      );
+      return likeResult;
+    } catch (error) {
+      // Eğer 404 ise, kullanıcı bu medyayı beğenmemiştir, null döndür
+      if (error?.message?.includes('404')) {
+        return null;
+      }
+      // Diğer hataları tekrar fırlat
+      throw error;
+    }
   }, []);
 
   const postLike = useCallback(async (mediaId, token) => {

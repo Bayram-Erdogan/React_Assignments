@@ -11,6 +11,8 @@ const Likes = ({ mediaId }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const userId = user?.user_id ?? null;
+
   useEffect(() => {
     const loadLikes = async () => {
       setIsLoading(true);
@@ -20,7 +22,7 @@ const Likes = ({ mediaId }) => {
         const likeCountResult = await getLikeCountByMediaId(mediaId);
         setLikeCount(likeCountResult.count ?? 0);
 
-        if (user) {
+        if (userId) {
           try {
             const likeResult = await getLikeByUser(
               mediaId,
@@ -44,7 +46,7 @@ const Likes = ({ mediaId }) => {
     };
 
     void loadLikes();
-  }, [getLikeByUser, getLikeCountByMediaId, mediaId, user]);
+  }, [mediaId, userId]);
 
   const handleLikeToggle = async () => {
     try {
