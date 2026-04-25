@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from 'react';
+import { createContext, useCallback, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { useAuthentication, useUser } from '../hooks/apiHooks';
 

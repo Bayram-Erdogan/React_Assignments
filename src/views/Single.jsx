@@ -1,12 +1,20 @@
 import { useLocation, useNavigate } from 'react-router';
 import Likes from '../components/Likes';
+import { useUserContext } from '../hooks/contextHooks';
 
 const Single = () => {
   const { state } = useLocation();
   const item = state?.item;
   const navigate = useNavigate();
+  const { user } = useUserContext();
 
   if (!item) return <p>No item selected</p>;
+
+  // Eğer kullanıcı yoksa login sayfasına yönlendir
+  if (!user) {
+    navigate('/login', { state: { from: { pathname: '/single', item } } });
+    return null;
+  }
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-6 text-left">
